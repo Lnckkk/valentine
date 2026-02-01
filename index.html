@@ -27,12 +27,32 @@
           height: 100%;
           margin: 0;
         }
-
+        
         body{
           font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
           color: var(--text);
           background: radial-gradient(1200px 900px at 50% 20%, var(--bg1), var(--bg2));
           overflow: hidden;
+        }
+        
+        /* Centrage stable (anti-saut) */
+        .stage{
+          position: fixed;
+          inset: 0;
+          display: grid;
+          place-items: center;
+          padding: 24px;
+        }
+        
+        /* IMPORTANT : le fond de la carte */
+        .card{
+          width: min(760px, 92vw);
+          background: var(--card);          /* ← le fond */
+          border-radius: var(--radius);
+          box-shadow: var(--shadow);
+          padding: 28px 18px 22px;
+          text-align: center;
+          position: relative;
         }
 
         . {
@@ -43,18 +63,6 @@
             padding: 28px 18px 22px;
             text-align: center;
             position: relative;
-        }
-
-        .stage{
-          position: fixed;
-          inset: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        
-          /* viewport stable sur mobile aussi */
-          min-height: 100svh;
-          padding: 24px;
         }
 
         .mascot-emoji {
@@ -367,4 +375,5 @@
 
 
 </html>
+
 
