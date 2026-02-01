@@ -24,25 +24,18 @@
         }
 
         html, body {
-          width: 100%;
           height: 100%;
           margin: 0;
         }
 
         body{
-          display: grid;
-          place-items: center;
           font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
           color: var(--text);
-          background: radial-gradient(
-            1200px 900px at 50% 20%,
-            var(--bg1),
-            var(--bg2)
-          );
+          background: radial-gradient(1200px 900px at 50% 20%, var(--bg1), var(--bg2));
           overflow: hidden;
         }
 
-        .card {
+        . {
             width: min(760px, 92vw);
             background: var(--card);
             border-radius: var(--radius);
@@ -50,6 +43,18 @@
             padding: 28px 18px 22px;
             text-align: center;
             position: relative;
+        }
+
+        .stage{
+          position: fixed;
+          inset: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        
+          /* viewport stable sur mobile aussi */
+          min-height: 100svh;
+          padding: 24px;
         }
 
         .mascot-emoji {
@@ -165,48 +170,50 @@
 <body>
     <canvas id="confetti"></canvas>
 
-    <div class="card" id="card">
-        <!-- Petit “chat” simple en SVG (tu peux remplacer par une image) -->
-        <div class="mascot-emoji">🥰</div>
-        <defs>
-            <filter id="s" x="-50%" y="-50%" width="200%" height="200%">
-                <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000" flood-opacity=".15" />
-            </filter>
-        </defs>
-        <g filter="url(#s)">
-            <circle cx="60" cy="64" r="38" fill="#f3b27a" />
-            <path d="M33 42 L46 30 L50 48" fill="#f3b27a" />
-            <path d="M87 42 L74 30 L70 48" fill="#f3b27a" />
-            <circle cx="48" cy="60" r="5.5" fill="#121826" />
-            <circle cx="72" cy="60" r="5.5" fill="#121826" />
-            <path d="M60 65 C56 68, 64 68, 60 65" stroke="#121826" stroke-width="3" fill="none"
-                stroke-linecap="round" />
-            <path d="M58 70 C52 76, 46 76, 42 73" stroke="#121826" stroke-width="3" fill="none"
-                stroke-linecap="round" />
-            <path d="M62 70 C68 76, 74 76, 78 73" stroke="#121826" stroke-width="3" fill="none"
-                stroke-linecap="round" />
-            <path d="M87 30 C98 22, 108 30, 100 42 C94 52, 87 54, 87 54 C87 54, 80 52, 74 42 C66 30, 76 22, 87 30Z"
-                fill="#e6466a" />
-        </g>
-        </svg>
-
-        <h1><span id="name">Célia</span> veux-tu être ma valentine ?</h1>
-
-        <div class="btn-area" id="btnArea">
-            <button class="btn" id="yesBtn">Oui</button>
-            <button class="btn" id="noBtn">Non</button>
+    <div class="stage">
+        <div class="card" id="card">
+            <!-- Petit “chat” simple en SVG (tu peux remplacer par une image) -->
+            <div class="mascot-emoji">🥰</div>
+            <defs>
+                <filter id="s" x="-50%" y="-50%" width="200%" height="200%">
+                    <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000" flood-opacity=".15" />
+                </filter>
+            </defs>
+            <g filter="url(#s)">
+                <circle cx="60" cy="64" r="38" fill="#f3b27a" />
+                <path d="M33 42 L46 30 L50 48" fill="#f3b27a" />
+                <path d="M87 42 L74 30 L70 48" fill="#f3b27a" />
+                <circle cx="48" cy="60" r="5.5" fill="#121826" />
+                <circle cx="72" cy="60" r="5.5" fill="#121826" />
+                <path d="M60 65 C56 68, 64 68, 60 65" stroke="#121826" stroke-width="3" fill="none"
+                    stroke-linecap="round" />
+                <path d="M58 70 C52 76, 46 76, 42 73" stroke="#121826" stroke-width="3" fill="none"
+                    stroke-linecap="round" />
+                <path d="M62 70 C68 76, 74 76, 78 73" stroke="#121826" stroke-width="3" fill="none"
+                    stroke-linecap="round" />
+                <path d="M87 30 C98 22, 108 30, 100 42 C94 52, 87 54, 87 54 C87 54, 80 52, 74 42 C66 30, 76 22, 87 30Z"
+                    fill="#e6466a" />
+            </g>
+            </svg>
+    
+            <h1><span id="name">Célia</span> veux-tu être ma valentine ?</h1>
+    
+            <div class="btn-area" id="btnArea">
+                <button class="btn" id="yesBtn">Oui</button>
+                <button class="btn" id="noBtn">Non</button>
+            </div>
+    
+            <p class="hint" id="hint">“Non” semble un peu timide 😈</p>
+    
+            <div class="success" id="success">
+                <h2>OUIII ! 🎉</h2>
+                <img src="https://media1.tenor.com/m/0DfyPxyrhhsAAAAd/happy-ecstatic.gif" alt="Happy Ecstatic"
+                    referrerpolicy="no-referrer"
+                    onerror="this.outerHTML='<p style=&quot;margin:0;color:#6b7280&quot;>Impossible de charger le GIF 😭</p>'" />
+    
+            </div>
+    
         </div>
-
-        <p class="hint" id="hint">“Non” semble un peu timide 😈</p>
-
-        <div class="success" id="success">
-            <h2>OUIII ! 🎉</h2>
-            <img src="https://media1.tenor.com/m/0DfyPxyrhhsAAAAd/happy-ecstatic.gif" alt="Happy Ecstatic"
-                referrerpolicy="no-referrer"
-                onerror="this.outerHTML='<p style=&quot;margin:0;color:#6b7280&quot;>Impossible de charger le GIF 😭</p>'" />
-
-        </div>
-
     </div>
 
     <script>
@@ -360,3 +367,4 @@
 
 
 </html>
+
